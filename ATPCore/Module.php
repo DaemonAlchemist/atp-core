@@ -5,6 +5,7 @@ namespace ATPCore;
 class Module extends \ATP\Module
 {
 	protected $_moduleName = "ATPCore";
+	protected $_moduleBaseDir = __DIR__;
 	
 	public function getServiceConfig()
 	{
