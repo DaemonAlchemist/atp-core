@@ -11,6 +11,13 @@ return array(
 	'db' => array(
 		'driver'	=> 'Pdo_Mysql',
 	),
+	'asset_manager' => array(
+		'resolver_configs' => array(
+			'paths' => array(
+				__DIR__ . '/../public',
+			),
+		),
+	),
     'service_manager' => array(
         'factories' => array(
             'Zend\Db\Adapter\Adapter' => function ($serviceManager) {
