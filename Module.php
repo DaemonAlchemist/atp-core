@@ -7,20 +7,11 @@ class Module extends \ATP\Module
 	protected $_moduleName = "ATPCore";
 	protected $_moduleBaseDir = __DIR__;
 	
-	public function getServiceConfig()
-	{
-		return array(
-			'factories' => array(
-				'ATPCore\Db' => function($sm)
-				{
-					return $sm->get('Zend\Db\Adapter\Adapter');
-				},
-				'ATPCore\Model\Module' => function($sm)
-				{
-					$module = new \ATPCore\Model\Module($sm->get('ATPCore\Db'));
-					return $module;
-				}
-			)
-		);
-	}
+    public function onBootstrap(\Zend\Mvc\MvcEvent $e)
+    {
+		// Set the db adapter so the models can find it.
+        $sm = $e->getApplication()->getServiceManager();
+		$adapter = $sm->get('ATPCore\Db');
+        \ATP\ActiveRecord::setAdapter($adapter);
+    }
 }

@@ -20,6 +20,10 @@ return array(
 	),
     'service_manager' => array(
         'factories' => array(
+			'ATPCore\Db' => function($sm)
+			{
+				return $sm->get('Zend\Db\Adapter\Adapter');
+			},
             'Zend\Db\Adapter\Adapter' => function ($serviceManager) {
 				$adapterFactory = new Zend\Db\Adapter\AdapterServiceFactory();
 				$adapter = $adapterFactory->createService($serviceManager);
@@ -29,4 +33,13 @@ return array(
 			},
         ),
     ),
+	
+	'view_helpers' => array(
+		'invokables' => array(
+			'formFile' => 'ATPCore\View\Helper\Form\File',
+			'formHidden' => 'ATPCore\View\Helper\Form\Hidden',
+			'formText' => 'ATPCore\View\Helper\Form\Text',
+			'formTextarea' => 'ATPCore\View\Helper\Form\Textarea',
+		)
+	)
 );
