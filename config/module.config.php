@@ -39,17 +39,7 @@ return array(
     ),
     'service_manager' => array(
         'factories' => array(
-			'ATPCore\Db' => function($sm)
-			{
-				return $sm->get('Zend\Db\Adapter\Adapter');
-			},
-            'Zend\Db\Adapter\Adapter' => function ($serviceManager) {
-				$adapterFactory = new Zend\Db\Adapter\AdapterServiceFactory();
-				$adapter = $adapterFactory->createService($serviceManager);
-				\Zend\Db\TableGateway\Feature\GlobalAdapterFeature::setStaticAdapter($adapter);
-
-				return $adapter;
-			},
+			'ATPCore\Db' => 'Zend\Db\Adapter\AdapterServiceFactory',
         ),
     ),
 	
