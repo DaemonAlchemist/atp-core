@@ -12,10 +12,11 @@ class Textarea extends \ATP\View\Helper
 		$text = isset($params['value']) ? $params['value'] : "";
 		unset($params['value']);
 	
-		$attributes = \ATP\MapReduce::get()
-			->map(function($item, $index){return "{$index}=\"{$item}\"";})
-			->reduce(new \ATP\Reducer\Concatenate(" "))
-			->process($params);
+		$attributes = \ATP\MapReduce::process(
+			$params,
+			function($item, $index){return "{$index}=\"{$item}\"";},
+			new \ATP\Reducer\Concatenate(" ")
+		);
 	
 		$html = "<label for=\"{$params['name']}\">{$label}</label>";
 		$html .= "<textarea {$attributes}>{$text}</textarea>";

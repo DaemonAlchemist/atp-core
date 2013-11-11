@@ -9,11 +9,12 @@ class File extends \ATP\View\Helper
 		$label = $params['label'];
 		unset($params['label']);
 		
-		$attributes = \ATP\MapReduce::get()
-			->map(function($item, $index){return "{$index}=\"{$item}\"";})
-			->reduce(new \ATP\Reducer\Concatenate(" "))
-			->process($params);
-	
+		$attributes = \ATP\MapReduce::process(
+			$params,
+			function($item, $index){return "{$index}=\"{$item}\"";},
+			new \ATP\Reducer\Concatenate(" ")
+		);
+			
 		$html = "<label for=\"{$params['name']}\">{$label}</label>";
 		$html .= "<input type=\"file\" {$attributes} />";
 		
