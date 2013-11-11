@@ -18,6 +18,25 @@ return array(
 			),
 		),
 	),
+    'router' => array(
+        'routes' => array(
+            'imageResize' => array(
+                'type'    => 'Segment',
+                'options' => array(
+                    'route'    => '/atp-core/resize/:width/:height/:mode[/:base64ImagePath]',
+                    'defaults' => array(
+                        'controller'    => 'ATPCore\Controller\ImageResize',
+                        'action'        => 'index',
+                    ),
+                ),
+            ),
+        ),
+    ),
+    'controllers' => array(
+        'invokables' => array(
+            'ATPCore\Controller\ImageResize' => 'ATPCore\Controller\ImageResize'
+        ),
+    ),
     'service_manager' => array(
         'factories' => array(
 			'ATPCore\Db' => function($sm)

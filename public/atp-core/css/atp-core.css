@@ -1,0 +1,19 @@
+.basic-form label {
+	display: block;
+	margin: 0 0 0 0;
+}
+
+.basic-form input, .basic-form textarea {
+	display: block;
+	width: 100%;
+	margin: 0 0 0.5em 0;
+}
+
+.basic-form textarea {
+	height: 7em;
+}
+
+.small-placeholder {
+	font-size: 0.5em;
+	color: #0000ff;
+}
