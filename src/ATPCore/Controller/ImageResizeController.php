@@ -17,7 +17,25 @@ class ImageResizeController extends AbstractController
 		$mode = strtolower($this->params('mode'));
 		
 		//Determine the cached image path
-		$cachedImagePath = getcwd() . "/public/images/resized/{$filePathEncoded}/{$id}_{$width}_{$height}_{$mode}.png";
+		$pathTemplate = $this->config('image_resize.path');
+		$path = str_replace(
+			array(
+				'{encodedPath}',
+				'{id}',
+				'{width}',
+				'{height}',
+				'{mode}'
+			),
+			array(
+				$filePathEncoded,
+				$id,
+				$width,
+				$height,
+				$mode
+			),
+			$pathTemplate
+		);
+		$cachedImagePath = getcwd() . "/public/{$path}";
 		
 		if(file_exists($cachedImagePath))
 		{

@@ -8,6 +8,9 @@
  */
 
 return array(
+	'image_resize' => array(
+		'path' => 'images/resized/{encodedPath}/{id}_{width}_{height}_{mode}.png'
+	),
 	'db' => array(
 		'driver'	=> 'Pdo_Mysql',
 	),
