@@ -25,7 +25,7 @@ return array(
                 'options' => array(
                     'route'    => '/atp-core/resize/:width/:height/:mode[/:base64ImagePath]',
                     'defaults' => array(
-                        'controller'    => 'ATPCore\Controller\ImageResize',
+                        'controller'    => 'ATPCore\Controller\ImageResizeController',
                         'action'        => 'index',
                     ),
                 ),
@@ -34,7 +34,7 @@ return array(
     ),
     'controllers' => array(
         'invokables' => array(
-            'ATPCore\Controller\ImageResize' => 'ATPCore\Controller\ImageResize'
+            'ATPCore\Controller\ImageResizeController' => 'ATPCore\Controller\ImageResizeController'
         ),
     ),
     'service_manager' => array(

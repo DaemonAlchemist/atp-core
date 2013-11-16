@@ -2,7 +2,7 @@
 
 namespace ATPCore\Controller;
 
-class ImageResize extends \Zend\Mvc\Controller\AbstractActionController
+class ImageResizeController extends AbstractController
 {
 	public function indexAction()
 	{
