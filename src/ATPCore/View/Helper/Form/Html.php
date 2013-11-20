@@ -2,23 +2,24 @@
 
 namespace ATPCore\View\Helper\Form;
 
-class File extends \ATP\View\Helper
+class Html extends \ATP\View\Helper
 {
 	public function __invoke($params)
 	{
 		$label = $params['label'];
 		unset($params['label']);
 		
+		$text = isset($params['value']) ? $params['value'] : "";
 		unset($params['value']);
-		
+	
 		$attributes = \ATP\MapReduce::process(
 			$params,
 			function($item, $index){return "{$index}=\"{$item}\"";},
 			new \ATP\Reducer\Concatenate(" ")
 		);
-			
+	
 		$html = "<label for=\"{$params['name']}\">{$label}</label>";
-		$html .= "<input type=\"file\" {$attributes} />";
+		$html .= "<textarea class=\"wysiwyg\" {$attributes}>{$text}</textarea>";
 		
 		return $html;
 	}
