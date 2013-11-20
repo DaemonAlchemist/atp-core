@@ -56,7 +56,7 @@ class ImageResizeController extends AbstractController
 				case "bywidth":	$height = $width / $size->getWidth() * $size->getHeight(); break;
 				case "byheight": $width = $height / $size->getHeight() * $size->getWidth(); break;
 				case "fit":
-					$scale = min($width / $size->getWidth, $height / $size->getHeight());
+					$scale = min($width / $size->getWidth(), $height / $size->getHeight());
 					$width = $scale * $size->getWidth();
 					$height = $scale * $size->getHeight();
 					break;
@@ -67,7 +67,7 @@ class ImageResizeController extends AbstractController
 			
 			//Apply the transformation
 			$transformation = new \Imagine\Filter\Transformation();
-			$transformation->thumbnail(new \Imagine\Image\Box($width, $height));
+			$transformation->resize(new \Imagine\Image\Box($width, $height));
 			$image = $transformation->apply($image);
 			
 			//Get the image content
