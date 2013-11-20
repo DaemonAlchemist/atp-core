@@ -48,10 +48,12 @@ return array(
 	
 	'view_helpers' => array(
 		'invokables' => array(
+			'formDate' => 'ATPCore\View\Helper\Form\Date',
 			'formFile' => 'ATPCore\View\Helper\Form\File',
 			'formHidden' => 'ATPCore\View\Helper\Form\Hidden',
 			'formText' => 'ATPCore\View\Helper\Form\Text',
 			'formTextarea' => 'ATPCore\View\Helper\Form\Textarea',
+			'formHtml' => 'ATPCore\View\Helper\Form\Html',
 		)
 	)
 );
