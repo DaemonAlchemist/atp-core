@@ -8,6 +8,27 @@
  */
 
 return array(
+	'admin' => array(
+		'models' =>array(
+			'core_parameter' => array(
+				'displayName' => 'Parameter',
+				'class' => 'ATPCore\Model\Parameter',
+				'category' => 'Admin',
+				'displayColumns' => array('Identifier', 'Value'),
+				'defaultOrder' => 'identifier ASC',
+				'fields' => array(
+					'Identifier' => array(
+						'type' => 'Text',
+						'label' => 'Identifier'
+					),
+					'Value' => array(
+						'type' => 'Text',
+						'label' => 'Value',
+					),
+				),
+			),
+		),
+	),
 	'image_resize' => array(
 		'path' => 'images/resized/{encodedPath}/{id}_{width}_{height}_{mode}.png'
 	),
@@ -48,9 +69,11 @@ return array(
 	
 	'view_helpers' => array(
 		'invokables' => array(
+			'siteParam' => 'ATPCore\View\Helper\SiteParameter',
 			'formDate' => 'ATPCore\View\Helper\Form\Date',
 			'formFile' => 'ATPCore\View\Helper\Form\File',
 			'formHidden' => 'ATPCore\View\Helper\Form\Hidden',
+			'formModelSelect' => 'ATPCore\View\Helper\Form\ModelSelect',
 			'formText' => 'ATPCore\View\Helper\Form\Text',
 			'formTextarea' => 'ATPCore\View\Helper\Form\Textarea',
 			'formHtml' => 'ATPCore\View\Helper\Form\Html',
