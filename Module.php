@@ -22,10 +22,14 @@ class Module extends \ATP\Module
 		
 		//Add filters to renderer
 		$filterChain = new \Zend\Filter\FilterChain();
-		$filters = isset($config['view_filters']) ? $config['view_filters'] : array();
-		foreach($filters as $filterClass => $options)
+		$filters = isset($config['block_filters']) ? $config['block_filters'] : array();
+		foreach($filters as $type => $class)
 		{
-			$filterChain->attach(new $filterClass($options));
+			$filter = new $class();
+			$filter->setServiceManager($sm);
+			$filter->setType($type);
+			$filter->setClass($class);
+			$filterChain->attach($filter);
 		}
 		$renderer->setFilterChain($filterChain);
     }

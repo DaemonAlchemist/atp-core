@@ -12,6 +12,8 @@ class Textarea extends \ATP\View\Helper
 		$text = isset($params['value']) ? $params['value'] : "";
 		unset($params['value']);
 	
+		$text = str_replace(array('{','}'), array('\{', '\}'), $text);
+	
 		$attributes = \ATP\MapReduce::process(
 			$params,
 			function($item, $index){return "{$index}=\"{$item}\"";},

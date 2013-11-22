@@ -8,7 +8,10 @@ class Text extends \ATP\View\Helper
 	{
 		$label = $params['label'];
 		unset($params['label']);
+
+		$params['value'] = str_replace(array('{','}'), array('\{', '\}'), $params['value']);
 	
+		
 		$attributes = \ATP\MapReduce::process(
 			$params,
 			function($item, $index){return "{$index}=\"{$item}\"";},
