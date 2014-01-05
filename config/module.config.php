@@ -67,13 +67,20 @@ return array(
         ),
     ),
 	
+    'view_manager' => array(
+        'template_path_stack' => array(
+            __DIR__ . '/../view',
+        ),
+	),
 	'view_helpers' => array(
 		'invokables' => array(
 			'siteParam' => 'ATPCore\View\Helper\SiteParameter',
+			'formBoolean' => 'ATPCore\View\Helper\Form\Boolean',
 			'formDate' => 'ATPCore\View\Helper\Form\Date',
 			'formFile' => 'ATPCore\View\Helper\Form\File',
 			'formHidden' => 'ATPCore\View\Helper\Form\Hidden',
 			'formModelSelect' => 'ATPCore\View\Helper\Form\ModelSelect',
+			'formPassword' => 'ATPCore\View\Helper\Form\Password',
 			'formText' => 'ATPCore\View\Helper\Form\Text',
 			'formTextarea' => 'ATPCore\View\Helper\Form\Textarea',
 			'formHtml' => 'ATPCore\View\Helper\Form\Html',
