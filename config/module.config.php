@@ -64,8 +64,19 @@ return array(
     'service_manager' => array(
         'factories' => array(
 			'ATPCore\Db' => 'Zend\Db\Adapter\AdapterServiceFactory',
+			'SessionManager' => 'ATPCore\Session\SessionManager',
         ),
     ),
+	
+	'session' => array(
+		'config' => array(
+			'class' => 'Zend\Session\Config\SessionConfig',
+			'options' => array(
+				'name' => 'ATP',
+			),
+		),
+		'storage' => 'Zend\Session\Storage\SessionArrayStorage',
+	),
 	
 	'view_helpers' => array(
 		'invokables' => array(
