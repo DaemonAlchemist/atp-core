@@ -84,6 +84,9 @@ return array(
 	'view_helpers' => array(
 		'invokables' => array(
 			'siteParam' => 'ATPCore\View\Helper\SiteParameter',
+			
+			'resize' => 'ATPCore\View\Helper\ImageResizePath',
+			
 			'formBoolean' => 'ATPCore\View\Helper\Form\Boolean',
 			'formDate' => 'ATPCore\View\Helper\Form\Date',
 			'formFile' => 'ATPCore\View\Helper\Form\File',
