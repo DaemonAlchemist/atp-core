@@ -93,6 +93,11 @@ return array(
 			'formText' => 'ATPCore\View\Helper\Form\Text',
 			'formTextarea' => 'ATPCore\View\Helper\Form\Textarea',
 			'formHtml' => 'ATPCore\View\Helper\Form\Html',
+			
+			'appendJs' => 'ATPCore\View\Helper\AppendJs',
+			'prependJs' => 'ATPCore\View\Helper\PrependJs',
+			'appendCss' => 'ATPCore\View\Helper\AppendCss',
+			'prependCss' => 'ATPCore\View\Helper\PrependCss',
 		)
 	)
 );
