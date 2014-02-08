@@ -1863,7 +1863,7 @@ if ($name{0} != '@') $name = '@'.$name;
 $parser->count = 0;
 $parser->buffer = (string)$strValue;
 if (!$parser->propertyValue($value)) {
-throw new Exception("failed to parse passed in variable $name: $strValue");
+throw new \Exception("failed to parse passed in variable $name: $strValue");
 }
 
 $this->set($name, $value);
@@ -1909,7 +1909,7 @@ return $out;
 
 public function compileFile($fname, $outFname = null) {
 if (!is_readable($fname)) {
-throw new Exception('load error: failed to find '.$fname);
+throw new \Exception('load error: failed to find '.$fname);
 }
 
 $pi = pathinfo($fname);
@@ -2020,7 +2020,7 @@ $this->setVariables($initialVariables);
 
 if ($str == null) {
 if (empty($this->_parseFile)) {
-throw new exception("nothing to parse");
+throw new \Exception("nothing to parse");
 }
 
 $out = $this->compileFile($this->_parseFile);
@@ -2098,7 +2098,7 @@ public function throwError($msg = null) {
 if ($this->sourceLoc >= 0) {
 $this->sourceParser->throwError($msg, $this->sourceLoc);
 }
-throw new exception($msg);
+throw new \Exception($msg);
 }
 
 // compile file $in to file $out if $in is newer than $out
@@ -2367,7 +2367,7 @@ $this->throwError();
 
 // TODO report where the block was opened
 if ( !property_exists($this->env, 'parent') || !is_null($this->env->parent) )
-throw new exception('parse error: unclosed block');
+throw new \Exception('parse error: unclosed block');
 
 return $this->env;
 }
@@ -2508,7 +2508,7 @@ $this->seek($s);
 if ($this->literal('}', false)) {
 try {
 $block = $this->pop();
-} catch (exception $e) {
+} catch (\Exception $e) {
 $this->seek($s);
 $this->throwError($e->getMessage());
 }
@@ -3552,9 +3552,9 @@ $loc = "line: $line";
 
 // TODO this depends on $this->count
 if ($this->peek("(.*?)(\n|$)", $m, $count)) {
-throw new exception("$msg: failed at `$m[1]` $loc");
+throw new \Exception("$msg: failed at `$m[1]` $loc");
 } else {
-throw new exception("$msg: $loc");
+throw new \Exception("$msg: $loc");
 }
 }
 
