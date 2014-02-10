@@ -89,6 +89,7 @@ return array(
 			
 			'breadcrumbs' => 'ATPCore\View\Helper\Breadcrumbs',
 			'headerLinks' => 'ATPCore\View\Helper\HeaderLinks',
+			'pageType' => 'ATPCore\View\Helper\PageType',
 			
 			'formBoolean' => 'ATPCore\View\Helper\Form\Boolean',
 			'formDate' => 'ATPCore\View\Helper\Form\Date',
