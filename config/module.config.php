@@ -87,6 +87,8 @@ return array(
 			
 			'resize' => 'ATPCore\View\Helper\ImageResizePath',
 			
+			'breadcrumbs' => 'ATPCore\View\Helper\Breadcrumbs',
+			
 			'formBoolean' => 'ATPCore\View\Helper\Form\Boolean',
 			'formDate' => 'ATPCore\View\Helper\Form\Date',
 			'formFile' => 'ATPCore\View\Helper\Form\File',
