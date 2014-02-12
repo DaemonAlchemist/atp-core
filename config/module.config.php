@@ -27,6 +27,35 @@ return array(
 					),
 				),
 			),
+			'core_redirect' => array(
+				'displayName' => 'Redirect',
+				'class' => 'ATPCore\Model\Redirect',
+				'category' => 'Admin',
+				'displayColumns' => array('Name', 'SourcePattern', 'DestPattern'),
+				'defaultOrder' => 'name ASC',
+				'fields' => array(
+					'Name' => array(
+						'type' => 'Text',
+						'label' => 'Name',
+					),
+					'SourcePattern' => array(
+						'type' => 'Text',
+						'label' => 'Source Pattern',
+					),
+					'DestPattern' => array(
+						'type' => 'Text',
+						'label' => 'Destination Pattern',
+					),
+					'Priority' => array(
+						'type' => 'Text',
+						'label' => 'Priority',
+					),
+					'IsPermanent' => array(
+						'type' => 'Boolean',
+						'label' => 'Permanent Redirect',
+					),
+				),
+			),
 		),
 	),
 	'image_resize' => array(
@@ -41,6 +70,11 @@ return array(
 				__DIR__ . '/../public',
 			),
 		),
+	),
+	'block_filters' => array(
+		'param' => 'ATPCore\View\Filter\Param',
+		'image' => 'ATPCms\View\Filter\Images',
+		'youtube' => 'ATPCms\View\Filter\Youtube',
 	),
     'router' => array(
         'routes' => array(
