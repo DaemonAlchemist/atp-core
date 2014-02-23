@@ -73,8 +73,9 @@ return array(
 	),
 	'block_filters' => array(
 		'param' => 'ATPCore\View\Filter\Param',
-		'image' => 'ATPCms\View\Filter\Images',
-		'youtube' => 'ATPCms\View\Filter\Youtube',
+	),
+	'redirects' => array(
+		'useRedirects' => true,
 	),
     'router' => array(
         'routes' => array(
