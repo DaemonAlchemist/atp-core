@@ -15,9 +15,14 @@ class Boolean extends \ATP\View\Helper
 			new \ATP\Reducer\Concatenate(" ")
 		);
 	
-		$html = "<input type=\"hidden\" name=\"{$params['name']}\" value=\"0\"/>";
-		$html .= "<label for=\"{$params['name']}\">{$params['label']}</label>";
-		$html .= "<input type=\"checkbox\" {$attributes} " . ($isChecked ? "checked" : "") . " value=\"1\"/>";
+		$html = "<label for=\"{$params['name']}\">{$params['label']}</label>";
+		$html .= "<select type=\"yes-no\" {$attributes}>";
+		$html .= "<option value=\"1\" " . ($isChecked ? "selected" : "") . ">Yes</option>";
+		$html .= "<option value=\"0\" " . (!$isChecked ? "selected" : "") . ">No</option>";
+		$html .= "</select>";
+	
+		//$html = "<input type=\"hidden\" name=\"{$params['name']}\" value=\"0\"/>";
+		//$html .= "<input class=\"checkbox\" type=\"checkbox\" {$attributes} " . ($isChecked ? "checked" : "") . " value=\"1\"/>";
 
 		return $html;
 	}
