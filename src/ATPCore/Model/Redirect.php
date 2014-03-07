@@ -7,20 +7,24 @@ class Redirect extends \ATP\ActiveRecord
 	protected function createDefinition()
 	{
 		$this->hasData('Name', 'SourcePattern', 'DestPattern', 'Priority', 'IsPermanent')
-			->isIdentifiedBy('Name')
 			->tableNamespace("core")
 			->isOrderedBy('priority DESC, name ASC');
 	}
 	
-	public static function redirect($path)
+	public static function redirect($path, $query)
 	{
+		$request = "{$path}?{$query}";
+	
 		$where = '? REGEXP source_pattern';
 		$redirect = new self();
-		$redirects = $redirect->loadMultiple($where, array($path));
+		$redirects = $redirect->loadMultiple($where, array($request));
 		if(count($redirects) > 0)
 		{
 			$redirect = current($redirects);
-			$newPath = str_replace('{{path}}', $path, $redirect->destPattern);
+			$newPath = $redirect->destPattern;
+			$newPath = str_replace('{{request}}', $request, $newPath);
+			$newPath = str_replace('{{path}}', $path, $newPath);
+			$newPath = str_replace('{{query}}', $query, $newPath);
 			$code = $redirect->isPermanent ? "301 Moved Permanently" : "302 Found";
 			header("HTTP/1.0 {$code}");
 			header("Location: {$newPath}");

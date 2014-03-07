@@ -19,7 +19,8 @@ class Module extends \ATP\Module
 		//Detect redirects
 		if($config['redirects']['useRedirects'])
 		{
-			\ATPCore\Model\Redirect::redirect($e->getRequest()->getUri()->getPath());
+			$uri = $e->getRequest()->getUri();
+			\ATPCore\Model\Redirect::redirect($uri->getPath(), $uri->getQuery());
 		}
 		
 		//Add filter hook to view renderer

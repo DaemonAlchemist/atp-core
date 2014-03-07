@@ -4,7 +4,7 @@ namespace ATPCore\View\Filter;
 
 class AbstractBlockFilter implements \Zend\Filter\FilterInterface
 {
-	private $_pattern = "/\{\{TYPE:(.*)\}\}/";
+	private $_pattern = "/\{\{TYPE:(.*?)\}\}/";
 	protected $_type = "";
 
 	private $_blocks = array();
