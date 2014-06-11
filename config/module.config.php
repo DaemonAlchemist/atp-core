@@ -64,13 +64,6 @@ return array(
 	'db' => array(
 		'driver'	=> 'Pdo_Mysql',
 	),
-	'asset_manager' => array(
-		'resolver_configs' => array(
-			'paths' => array(
-				__DIR__ . '/../public',
-			),
-		),
-	),
 	'block_filters' => array(
 		'param' => 'ATPCore\View\Filter\Param',
 	),
@@ -110,11 +103,6 @@ return array(
 			),
 		),
 		'storage' => 'Zend\Session\Storage\SessionArrayStorage',
-	),
-    'view_manager' => array(
-        'template_path_stack' => array(
-            __DIR__ . '/../view',
-        ),
 	),
 	'view_helpers' => array(
 		'invokables' => array(
