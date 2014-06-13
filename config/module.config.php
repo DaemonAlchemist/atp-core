@@ -23,7 +23,6 @@ return array(
 				'category' => 'Admin',
 				'displayColumns' => array('Name', 'SourcePattern', 'DestPattern'),
 				'defaultOrder' => 'name ASC',
-				),
 			),
 		),
 	),
