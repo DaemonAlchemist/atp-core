@@ -20,7 +20,7 @@ class ModelSelect extends \ATP\View\Helper
 	
 		$obj = new $className();
 		$objects = $obj->loadMultiple();
-	
+		
 		$html = "<label for=\"{$params['name']}\">{$label}</label>";
 		$html .= "<select {$attributes}>";
 		

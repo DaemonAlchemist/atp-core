@@ -16,16 +16,6 @@ return array(
 				'category' => 'Admin',
 				'displayColumns' => array('Identifier', 'Value'),
 				'defaultOrder' => 'identifier ASC',
-				'fields' => array(
-					'Identifier' => array(
-						'type' => 'Text',
-						'label' => 'Identifier'
-					),
-					'Value' => array(
-						'type' => 'Text',
-						'label' => 'Value',
-					),
-				),
 			),
 			'core_redirect' => array(
 				'displayName' => 'Redirect',
@@ -33,27 +23,6 @@ return array(
 				'category' => 'Admin',
 				'displayColumns' => array('Name', 'SourcePattern', 'DestPattern'),
 				'defaultOrder' => 'name ASC',
-				'fields' => array(
-					'Name' => array(
-						'type' => 'Text',
-						'label' => 'Name',
-					),
-					'SourcePattern' => array(
-						'type' => 'Text',
-						'label' => 'Source Pattern',
-					),
-					'DestPattern' => array(
-						'type' => 'Text',
-						'label' => 'Destination Pattern',
-					),
-					'Priority' => array(
-						'type' => 'Text',
-						'label' => 'Priority',
-					),
-					'IsPermanent' => array(
-						'type' => 'Boolean',
-						'label' => 'Permanent Redirect',
-					),
 				),
 			),
 		),

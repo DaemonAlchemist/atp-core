@@ -4,11 +4,9 @@ namespace ATPCore\Model;
 
 class Parameter extends \ATP\ActiveRecord
 {
-	protected function createDefinition()
+	protected function setup()
 	{
-		$this->hasData('Identifier', 'Value')
-			->isIdentifiedBy('Identifier')
-			->tableNamespace("core");
+		$this->setTableNamespace("core");
 	}
 }
 Parameter::init();

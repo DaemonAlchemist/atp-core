@@ -4,10 +4,9 @@ namespace ATPCore\Model;
 
 class Redirect extends \ATP\ActiveRecord
 {
-	protected function createDefinition()
+	protected function setup()
 	{
-		$this->hasData('Name', 'SourcePattern', 'DestPattern', 'Priority', 'IsPermanent')
-			->tableNamespace("core")
+		$this->setTableNamespace("core")
 			->isOrderedBy('priority DESC, name ASC');
 	}
 	
@@ -17,7 +16,7 @@ class Redirect extends \ATP\ActiveRecord
 	
 		$where = '? REGEXP source_pattern';
 		$redirect = new self();
-		$redirects = $redirect->loadMultiple($where, array($request));
+		$redirects = $redirect->loadMultiple(array('where' => $where, 'data' => array($request)));
 		if(count($redirects) > 0)
 		{
 			$redirect = current($redirects);

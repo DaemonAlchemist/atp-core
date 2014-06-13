@@ -6,10 +6,7 @@ class Module extends \ATP\ActiveRecord
 {
 	protected function createDefinition()
 	{
-		$this->hasData('Name', 'IsActive', 'Version')
-			->hasAdminColumns('Name', 'IsActive')
-			->isIdentifiedBy('Name')
-			->isOrderedBy('name ASC');
+		$this->setTableNamespace('core');
 	}
 	
 	public function getActiveModules()
