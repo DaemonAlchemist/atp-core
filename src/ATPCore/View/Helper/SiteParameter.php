@@ -7,7 +7,12 @@ class SiteParameter extends \ATP\View\Helper
 	public function __invoke($name)
 	{
 		$param = new \ATPCore\Model\Parameter();
-		$param->loadByIdentifier($name);
+		if(!$param->loadByIdentifier($name))
+		{
+			$param->identifier = $name;
+			$param->value = "{{$name} goes here}";
+			$param->save();
+		}
 		return $param->value;
 	}
 }
