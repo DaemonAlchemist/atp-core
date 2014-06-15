@@ -6,7 +6,14 @@ class Param extends \ATPCore\View\Filter\AbstractBlockFilter
 {
 	protected function _loadObject($id)
 	{
-		return new \ATPCore\Model\Parameter($id);
+		$param = new \ATPCore\Model\Parameter();
+		if(!$param->loadByIdentifier($id))
+		{
+			$param->identifier = $id;
+			$param->value = "{{$id} goes here}";
+			$param->save();
+		}
+		return $param;
 	}
 	
 	protected function _replace($param)
