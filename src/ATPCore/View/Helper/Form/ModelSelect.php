@@ -24,6 +24,8 @@ class ModelSelect extends \ATP\View\Helper
 		$html = "<label for=\"{$params['name']}\">{$label}</label>";
 		$html .= "<select {$attributes}>";
 		
+		$selected = (empty($obj->id)) ? "selected" : "";
+		$html .= "<option value=\"\" {$selected}>- Select an option -</option>";
 		foreach($objects as $obj)
 		{
 			$selected = ($params['value'] == $obj->id) ? "selected" : "";
