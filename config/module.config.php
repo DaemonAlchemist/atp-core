@@ -10,14 +10,14 @@
 return array(
 	'admin' => array(
 		'models' =>array(
-			'core_parameter' => array(
+			'atpcore_parameter' => array(
 				'displayName' => 'Parameter',
 				'class' => 'ATPCore\Model\Parameter',
 				'category' => 'Admin',
 				'displayColumns' => array('Identifier', 'Value'),
 				'defaultOrder' => 'identifier ASC',
 			),
-			'core_redirect' => array(
+			'atpcore_redirect' => array(
 				'displayName' => 'Redirect',
 				'class' => 'ATPCore\Model\Redirect',
 				'category' => 'Admin',
@@ -43,7 +43,7 @@ return array(
             'imageResize' => array(
                 'type'    => 'Segment',
                 'options' => array(
-                    'route'    => '/atp-core/resize/:width/:height/:mode[/:base64ImagePath]',
+                    'route'    => '/image-resize/:width/:height/:mode[/:base64ImagePath]',
                     'defaults' => array(
                         'controller'    => 'ATPCore\Controller\ImageResizeController',
                         'action'        => 'index',

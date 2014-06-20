@@ -4,19 +4,13 @@ namespace ATPCore\Model;
 
 class Redirect extends \ATP\ActiveRecord
 {
-	protected function setup()
-	{
-		$this->setTableNamespace("core")
-			->isOrderedBy('priority DESC, name ASC');
-	}
-	
 	public static function redirect($path, $query)
 	{
 		$request = "{$path}?{$query}";
 	
 		$where = '? REGEXP source_pattern';
 		$redirect = new self();
-		$redirects = $redirect->loadMultiple(array('where' => $where, 'data' => array($request)));
+		$redirects = $redirect->loadMultiple(array('where' => $where, 'data' => array($request), 'orderBy' => 'priority DESC, name ASC'));
 		if(count($redirects) > 0)
 		{
 			$redirect = current($redirects);

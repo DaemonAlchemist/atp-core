@@ -12,6 +12,6 @@ class ImageResizePath extends \ATP\View\Helper
 		$mode = $params['mode'];
 		$pathEncoded = base64_encode($path);
 		
-		return "/atp-core/resize/{$width}/{$height}/{$mode}/{$pathEncoded}";
+		return "/image-resize/{$width}/{$height}/{$mode}/{$pathEncoded}";
 	}
 }
