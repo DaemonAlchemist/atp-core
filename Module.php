@@ -28,7 +28,7 @@ class Module extends \ATP\Module
 		$renderer = $vm->getRenderer();
 		
 		//Add filters to renderer
-		$filterChain = new \Zend\Filter\FilterChain();
+		$filterChain = new \ATPCore\Filter\FilterChain();
 		$filters = isset($config['block_filters']) ? $config['block_filters'] : array();
 		foreach($filters as $type => $class)
 		{
