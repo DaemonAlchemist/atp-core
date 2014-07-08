@@ -1,0 +1,23 @@
+<h2>Module Parameters</h2>
+
+<div id="admin-tabs">
+	<ul>
+		<?php foreach(array_keys($params) as $group) { ?>
+			<li><a href="#<?=$group?>-tab"><?=$group?></a></li>
+		<?php } ?>
+	</ul>
+	<form method="post" enctype="multipart/form-data">
+		<?php foreach($params as $group => $paramList) { ?>
+			<div id="<?=$group?>-tab">
+				<div class="admin-edit model-edit-form">
+					<?php foreach($paramList as $id => $param) { ?>
+						<?php $helper = "form{$param['type']}"?>
+						<?php $value = isset($objects[$param['identifier']]) ? $objects[$param['identifier']]->value : $param['default']?>
+						<?=$this->$helper(array('label' => $param['identifier'], 'name' => "params[{$group}][{$id}]", 'value' => $value))?>
+					<?php } ?>
+					<input type="submit" class="model-save" name="submit" value="Save Parameters" />
+				</div>
+			</div>
+		<?php } ?>
+	</form>
+</div>

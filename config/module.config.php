@@ -16,6 +16,9 @@ return array(
 				'category' => 'Admin',
 				'displayColumns' => array('Identifier', 'Value'),
 				'defaultOrder' => 'identifier ASC',
+				'custom_actions' => array(
+					'list' => array('controller' => 'core-admin', 'action' => 'parameter-list'),
+				),
 			),
 			'atpcore_redirect' => array(
 				'displayName' => 'Redirect',
@@ -23,6 +26,32 @@ return array(
 				'category' => 'Admin',
 				'displayColumns' => array('Name', 'SourcePattern', 'DestPattern'),
 				'defaultOrder' => 'name ASC',
+			),
+		),
+		'parameters' => array(
+			'core-admin-title' => array(
+				'identifier' => 'Admin Title',
+				'group' => 'Core',
+				'type' => 'Text',
+				'default' => '&lt;Admin Title Goes Here&gt;',
+			),
+			'core-site-title' => array(
+				'identifier' => 'Site Title',
+				'group' => 'Core',
+				'type' => 'Text',
+				'default' => '&lt;Site Title Goes Here&gt;',
+			),
+			'core-ga-key' => array(
+				'identifier' => 'Google Analytics Key',
+				'group' => 'Analytics',
+				'type' => 'Text',
+				'default' => '',
+			),
+			'core-ga-domain' => array(
+				'identifier' => 'Google Analytics Domain',
+				'group' => 'Analytics',
+				'type' => 'Text',
+				'default' => '',
 			),
 		),
 	),
@@ -45,7 +74,7 @@ return array(
                 'options' => array(
                     'route'    => '/image-resize/:width/:height/:mode[/:base64ImagePath]',
                     'defaults' => array(
-                        'controller'    => 'ATPCore\Controller\ImageResizeController',
+                        'controller'    => 'image-resize',
                         'action'        => 'index',
                     ),
                 ),
@@ -54,7 +83,8 @@ return array(
     ),
     'controllers' => array(
         'invokables' => array(
-            'ATPCore\Controller\ImageResizeController' => 'ATPCore\Controller\ImageResizeController'
+            'image-resize' => 'ATPCore\Controller\ImageResizeController',
+			'core-admin' => 'ATPCore\Controller\AdminController',
         ),
     ),
     'service_manager' => array(
