@@ -41,6 +41,18 @@ return array(
 				'type' => 'Text',
 				'default' => '&lt;Site Title Goes Here&gt;',
 			),
+			'core-site-title-sep' => array(
+				'identifier' => 'Site Title Separator',
+				'group' => 'Core',
+				'type' => 'Text',
+				'default' => ' - ',
+			),
+			'core-site-title' => array(
+				'identifier' => 'Copyright Text',
+				'group' => 'Layout',
+				'type' => 'Text',
+				'default' => 'Copyright ##DATE##',
+			),
 			'core-ga-key' => array(
 				'identifier' => 'Google Analytics Key',
 				'group' => 'Analytics',

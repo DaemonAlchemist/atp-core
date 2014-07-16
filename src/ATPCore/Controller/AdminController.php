@@ -26,6 +26,7 @@ class AdminController extends \ATPAdmin\Controller\IndexController
 					$identifier = $params[$group][$id]['identifier'];
 					$param = new \ATPCore\Model\Parameter();
 					$param->loadByIdentifier($identifier);
+					$param->identifier = $identifier;
 					$param->value = $value;
 					$param->save();
 				}
