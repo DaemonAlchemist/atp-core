@@ -75,6 +75,7 @@ return array(
 	),
 	'block_filters' => array(
 		'param' => 'ATPCore\View\Filter\Param',
+		'url' => 'ATPCore\View\Filter\Url',
 	),
 	'redirects' => array(
 		'useRedirects' => true,
