@@ -16,13 +16,6 @@ class Module extends \ATP\Module
 		$adapter = $sm->get('ATPCore\Db');
         \ATP\ActiveRecord::setAdapter($adapter);
 		
-		//Detect redirects
-		if($config['redirects']['useRedirects'])
-		{
-			$uri = $e->getRequest()->getUri();
-			\ATPCore\Model\Redirect::redirect($uri->getPath(), $uri->getQuery());
-		}
-		
 		//Add filter hook to view renderer
 		$vm = $sm->get('ViewManager');
 		$renderer = $vm->getRenderer();
