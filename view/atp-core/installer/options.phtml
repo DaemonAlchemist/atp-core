@@ -1,0 +1,17 @@
+<?php $this->appendCSS("/atp-core/css/installer.less")?>
+
+<h1>ATP Framework Installer</h1>
+
+<form method="post" action="<?=$this->url('install', array('action' => 'install'))?>">
+	<?php foreach($options as $moduleName => $moduleOptions) { ?>
+		<h2><?=$moduleName?></h2>
+		<?php foreach($moduleOptions as $optionName => $optionData) { ?>
+			<?php $helper = "form{$optionData['type']}" ?>
+			<?=$this->$helper(array('label' => $optionData['label'], 'name' => "{$moduleName}[{$optionName}]", 'value' => $optionData['default']))?>
+		<?php } ?>
+	<?php } ?>
+	
+	<hr>
+	
+	<input id="submit" type="submit" value="Install ATP Framework" />
+</form>

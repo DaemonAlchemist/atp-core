@@ -8,6 +8,11 @@
  */
 
 return array(
+	'modules' => array(
+		'ATPCore' => array(
+			'version' => '1.0',
+		),
+	),
 	'admin' => array(
 		'models' =>array(
 			'atpcore_parameter' => array(
@@ -17,7 +22,7 @@ return array(
 				'displayColumns' => array('Identifier', 'Value'),
 				'defaultOrder' => 'identifier ASC',
 				'custom_actions' => array(
-					'list' => array('controller' => 'core-admin', 'action' => 'parameter-list'),
+					'list' => array('controller' => 'atpcore-admin', 'action' => 'parameter-list'),
 				),
 			),
 			'atpcore_redirect' => array(
@@ -25,6 +30,13 @@ return array(
 				'class' => 'ATPCore\Model\Redirect',
 				'category' => 'Admin',
 				'displayColumns' => array('Name', 'SourcePattern', 'DestPattern'),
+				'defaultOrder' => 'name ASC',
+			),
+			'atpcore_module' => array(
+				'displayName' => 'Module',
+				'class' => 'ATPCore\Model\Module',
+				'category' => 'Admin',
+				'displayColumns' => array('Version', 'IsActive'),
 				'defaultOrder' => 'name ASC',
 			),
 		),
@@ -82,12 +94,22 @@ return array(
 	),
     'router' => array(
         'routes' => array(
+			'install' => array(
+				'type' => 'Segment',
+				'options' => array(
+					'route' => '/install[/:action[/]]',
+					'defaults' => array(
+						'controller' => 'atpcore-installer',
+						'action' => 'options',
+					),
+				),
+			),
             'imageResize' => array(
                 'type'    => 'Segment',
                 'options' => array(
                     'route'    => '/image-resize/:width/:height/:mode[/:base64ImagePath]',
                     'defaults' => array(
-                        'controller'    => 'image-resize',
+                        'controller'    => 'atpcore-image-resize',
                         'action'        => 'index',
                     ),
                 ),
@@ -96,8 +118,9 @@ return array(
     ),
     'controllers' => array(
         'invokables' => array(
-            'image-resize' => 'ATPCore\Controller\ImageResizeController',
-			'core-admin' => 'ATPCore\Controller\AdminController',
+			'atpcore-installer' => 'ATPCore\Controller\InstallerController',
+            'atpcore-image-resize' => 'ATPCore\Controller\ImageResizeController',
+			'atpcore-admin' => 'ATPCore\Controller\AdminController',
         ),
     ),
     'service_manager' => array(

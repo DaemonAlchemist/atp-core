@@ -10,6 +10,7 @@ class Module extends \ATP\Module
     public function onBootstrap(\Zend\Mvc\MvcEvent $e)
     {
         $sm = $e->getApplication()->getServiceManager();
+		$this->setServiceManager($sm);
 		$config = $sm->get('Config');
 		
 		// Set the db adapter so the models can find it.
@@ -33,4 +34,89 @@ class Module extends \ATP\Module
 		}
 		$renderer->setFilterChain($filterChain);
     }
+	
+	public function getInstallerOptions()
+	{
+		return array(
+			'db_host' => array(
+				'label' => 'Database Host',
+				'type' => 'Text',
+				'default' => 'localhost',
+			),
+			'db_schema' => array(
+				'label' => 'Database Schema',
+				'type' => 'Text',
+				'default' => 'atp',
+			),
+			'db_user' => array(
+				'label' => 'Database Username',
+				'type' => 'Text',
+				'default' => 'root',
+			),
+			'db_pass' => array(
+				'label' => 'Database Password',
+				'type' => 'Password',
+				'default' => '',
+			),
+		);
+	}
+	
+	public function install($options = array())
+	{
+		//Setup database parameters
+		$configFile = new \ATP\Config\File("config/autoload/global.php");
+		$configFile->apply($options);
+		$configFile->save();
+		
+		//Setup a temp adapter for the ActiveRecord classes to use while installing
+		$config = $this->getServiceManager()->get('Config');
+		$dbConfig = $config['db'];
+		$dbConfig['host'] = $options['db_host'];
+		$dbConfig['database'] = $options['db_schema'];
+		$dbConfig['username'] = $options['db_user'];
+		$dbConfig['password'] = $options['db_pass'];
+		$adapter = new \Zend\Db\Adapter\Adapter($dbConfig);
+		\ATP\ActiveRecord::setAdapter($adapter);
+		
+		//Create the database schema
+		$adapter->query("CREATE DATABASE `skylands`", \Zend\Db\Adapter\Adapter::QUERY_MODE_EXECUTE);
+		
+		//Install database tables
+		$this->installDatabaseEntries();
+	}
+	
+	protected function getInstallDbQueries()
+	{
+		return array(
+			"CREATE TABLE `atpcore_modules` (
+				`id` int(11) NOT NULL,
+				`name` char(32) COLLATE utf8_unicode_ci DEFAULT NULL,
+				`version` char(32) COLLATE utf8_unicode_ci DEFAULT NULL,
+				`is_active` tinyint(1) DEFAULT NULL,
+				PRIMARY KEY (`id`),
+				KEY `name_index` (`name`)
+			) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci",
+			
+			"CREATE TABLE `atpcore_parameters` (
+				`id` int(11) NOT NULL AUTO_INCREMENT,
+				`identifier` char(32) COLLATE utf8_unicode_ci DEFAULT NULL,
+				`value` char(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+				PRIMARY KEY (`id`),
+				UNIQUE KEY `identifier_UNIQUE` (`identifier`)
+			) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci",
+			
+			"CREATE TABLE `atpcore_redirects` (
+				`id` int(11) NOT NULL AUTO_INCREMENT,
+				`name` char(64) COLLATE utf8_unicode_ci DEFAULT NULL,
+				`is_permanent` tinyint(1) NOT NULL DEFAULT '1',
+				`priority` int(2) NOT NULL DEFAULT '0',
+				`source_pattern` char(255) COLLATE utf8_unicode_ci NOT NULL,
+				`dest_pattern` char(255) COLLATE utf8_unicode_ci NOT NULL,
+				PRIMARY KEY (`id`),
+				KEY `name_index` (`name`),
+				KEY `source_index` (`source_pattern`),
+				KEY `priority_index` (`priority`)
+			) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci",
+		);
+	}
 }

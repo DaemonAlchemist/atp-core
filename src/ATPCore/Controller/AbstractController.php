@@ -4,20 +4,40 @@ namespace ATPCore\Controller;
 
 class AbstractController extends \Zend\Mvc\Controller\AbstractActionController
 {
-     public function onDispatch(\Zend\Mvc\MvcEvent $e)
+	protected $_isInstallerController = false;
+	protected $_isUpdaterController = false;
+
+     public function onDispatch(\Zend\Mvc\MvcEvent $event)
 	 {
-		//Check to see if framework is installed
-		
 		//Check if all modules are up-to-date
+		$modules = $this->config('modules');
+		foreach($modules as $name => $moduleData)
+		{
+			try {
+				$module = new \ATPCore\Model\Module();
+				$module->loadByName($name);
+				
+				if($moduleData['version'] != $module->version)
+				{
+					if(!$this->_isUpdaterController) $this->redirect()->toRoute('install', array('action' => 'update'));
+				}
+			} catch(\Exception $e) {
+				if(!$this->_isInstallerController) $this->redirect()->toRoute('install', array('action' => 'options'));
+			}
+		}
 	 
 		//Detect redirects
-		if($this->config('redirects.useRedirects'))
+		if(!$this->_isInstallerController && !$this->_isUpdaterController)
 		{
-			$uri = $e->getRequest()->getUri();
-			\ATPCore\Model\Redirect::redirect($uri->getPath(), $uri->getQuery());
+			if($this->config('redirects.useRedirects'))
+			{
+				$uri = $event->getRequest()->getUri();
+				\ATPCore\Model\Redirect::redirect($uri->getPath(), $uri->getQuery());
+			}
 		}
 
-		parent::onDispatch($e);
+		//Proceed with page loading
+		parent::onDispatch($event);
 	 }
 
 

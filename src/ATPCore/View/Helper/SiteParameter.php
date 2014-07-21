@@ -6,13 +6,17 @@ class SiteParameter extends \ATP\View\Helper
 {
 	public function __invoke($name)
 	{
-		$param = new \ATPCore\Model\Parameter();
-		if(!$param->loadByIdentifier($name))
-		{
-			$param->identifier = $name;
-			$param->value = "{{$name} goes here}";
-			$param->save();
+		try {
+			$param = new \ATPCore\Model\Parameter();
+			if(!$param->loadByIdentifier($name))
+			{
+				$param->identifier = $name;
+				$param->value = "{{$name} goes here}";
+				$param->save();
+			}
+			return $param->value;
+		} catch(\Exception $e) {
+			return "";
 		}
-		return $param->value;
 	}
 }
