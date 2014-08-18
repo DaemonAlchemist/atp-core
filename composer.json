@@ -1,0 +1,32 @@
+{
+    "name": "daemonalchemist/atp-core",
+    "description": "Core components for the ATP framework",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Andrew Wittrock",
+            "email": "andy@wittrock.us"
+        }
+    ],
+    "require": {
+		"imagine/imagine": "dev-master",
+		"kriswallsmith/assetic": "dev-master as 1.1.2",
+		"rwoverdijk/assetmanager": "dev-master",
+		"zendframework/zend-cache": "2.3.*",
+		"zendframework/zend-config": "2.3.*",
+		"zendframework/zend-console": "2.3.*",
+		"zendframework/zend-crypt": "2.3.*",
+		"zendframework/zend-db": "2.3.*",
+		"zendframework/zend-form": "2.3.*",
+		"zendframework/zend-http": "2.3.*",
+		"zendframework/zend-i18n": "2.3.*",
+		"zendframework/zend-loader": "2.3.*",
+		"zendframework/zend-log": "2.3.*",
+		"zendframework/zend-math": "2.3.*",
+		"zendframework/zend-modulemanager": "2.3.*",
+		"zendframework/zend-mvc": "2.3.*",
+		"zendframework/zend-serializer": "2.3.*",
+		"zendframework/zend-uri": "2.3.*",
+		"zendframework/zend-view": "2.3.*"
+    }
+}
