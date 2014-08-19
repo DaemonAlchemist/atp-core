@@ -19,7 +19,8 @@ class AbstractController extends \Zend\Mvc\Controller\AbstractActionController
 				
 				if($moduleData['version'] != $module->version)
 				{
-					if(!$this->_isUpdaterController) $this->redirect()->toRoute('install', array('action' => 'update'));
+					//Temporarilly disable updater
+					//if(!$this->_isUpdaterController) $this->redirect()->toRoute('install', array('action' => 'update'));
 				}
 			} catch(\Exception $e) {
 				if(!$this->_isInstallerController) $this->redirect()->toRoute('install', array('action' => 'options'));
