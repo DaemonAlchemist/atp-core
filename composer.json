@@ -9,6 +9,7 @@
         }
     ],
     "require": {
+		"daemonalchemist/atp": "dev-master",
 		"imagine/imagine": "0.6.1",
 		"rwoverdijk/assetmanager": "dev-master",
 		"zendframework/zend-cache": "2.3.*",
