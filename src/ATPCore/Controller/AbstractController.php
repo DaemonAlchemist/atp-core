@@ -9,6 +9,9 @@ class AbstractController extends \Zend\Mvc\Controller\AbstractActionController
 
      public function onDispatch(\Zend\Mvc\MvcEvent $event)
 	 {
+		//Set the default time zone
+		date_default_timezone_set($this->config('timeZone'));
+	 
 		//Check if all modules are up-to-date
 		$modules = $this->config('modules');
 		foreach($modules as $name => $moduleData)
