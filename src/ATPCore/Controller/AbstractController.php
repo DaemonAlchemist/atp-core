@@ -64,4 +64,11 @@ class AbstractController extends \Zend\Mvc\Controller\AbstractActionController
 		
 		return $config;
 	}
+	
+	protected function siteParam($name)
+	{
+		$param = new \ATPCore\Model\Parameter();
+		$param->loadByIdentifier($name);
+		return $param->value;
+	}
 }
