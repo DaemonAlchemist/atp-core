@@ -12,4 +12,12 @@ class Widget extends \Zend\View\Model\ViewModel
 		
 		$this->setTemplate($this->_template);
 	}
+	
+	public function setOptions($options)
+	{
+		foreach($options as $option => $value)
+		{
+			$this->$option = $value;
+		}
+	}
 }
