@@ -19,6 +19,10 @@ return array(
 				'category' => 'Admin',
 				'displayColumns' => array('Name', 'SourcePattern', 'DestPattern'),
 				'defaultOrder' => 'name ASC',
+				'tabs' => array(
+					'Details' => array('name', 'is_permanent'),
+					'Patterns' => array('source_pattern', 'dest_pattern'),
+				),
 			),
 			'atpcore_module' => array(
 				'displayName' => 'Module',
