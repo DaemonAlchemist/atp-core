@@ -86,23 +86,26 @@ class AbstractController extends \Zend\Mvc\Controller\AbstractActionController
 		$layout = $this->config('layout');
 		
 		//Init blocks
-		foreach($layout['global']['blocks'] as $blockName => $blockData)
+		if(isset($layout['global']['blocks']))
 		{
-			$class = $layout['blocks'][$blockName];
-			$block = new $class();
-			$options = array();
-			foreach($blockData['options'] as $optionName => $optionValueData)
+			foreach($layout['global']['blocks'] as $blockName => $blockData)
 			{
-				$type = $optionValueData[0];
-				$id = $optionValueData[1];
-				switch($type)
+				$class = $layout['blocks'][$blockName];
+				$block = new $class();
+				$options = array();
+				foreach($blockData['options'] as $optionName => $optionValueData)
 				{
-					case 'siteParam':	$options[$optionName] = $this->siteParam($id);	break;
-					default:			$options[$optionName] = $id;					break;
+					$type = $optionValueData[0];
+					$id = $optionValueData[1];
+					switch($type)
+					{
+						case 'siteParam':	$options[$optionName] = $this->siteParam($id);	break;
+						default:			$options[$optionName] = $id;					break;
+					}
 				}
+				$block->setOptions($options);
+				$this->layout()->addChild($block, $blockName);
 			}
-			$block->setOptions($options);
-			$this->layout()->addChild($block, $blockName);
 		}
 	}
 }
