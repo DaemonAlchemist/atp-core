@@ -1,17 +1,17 @@
 <?php if($flash->hasErrorMessages()) { ?>
 	<?php foreach($flash->getErrorMessages() as $message) { ?>
-		<p class="error-message"><?=$message?></p>
+		<p class="message error-message"><?=$message?></p>
 	<?php } ?>
 <?php } ?>
 
 <?php if($flash->hasSuccessMessages()) { ?>
 	<?php foreach($flash->getSuccessMessages() as $message) { ?>
-		<p class="success-message"><?=$message?></p>
+		<p class="message success-message"><?=$message?></p>
 	<?php } ?>
 <?php } ?>
 
 <?php if($flash->hasInfoMessages()) { ?>
 	<?php foreach($flash->getInfoMessages() as $message) { ?>
-		<p class="info-message"><?=$message?></p>
+		<p class="message info-message"><?=$message?></p>
 	<?php } ?>
 <?php } ?>
