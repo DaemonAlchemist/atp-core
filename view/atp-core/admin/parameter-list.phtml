@@ -18,7 +18,10 @@
 						<?php foreach($paramList as $id => $param) { ?>
 							<?php $helper = "form{$param['type']}"?>
 							<?php $value = isset($objects[$param['identifier']]) ? $objects[$param['identifier']]->value : $param['default']?>
-							<?=$this->$helper(array('label' => $param['identifier'], 'name' => "params[{$group}][{$id}]", 'value' => $value))?>
+							<?=$this->$helper(array_merge(
+								array('label' => $param['identifier'], 'name' => "params[{$group}][{$id}]", 'value' => $value),
+								isset($param['options']) ? $param['options'] : array()
+							))?>
 						<?php } ?>
 					</div>
 				</div>
