@@ -21,9 +21,8 @@ class AdminController extends \ATPAdmin\Controller\IndexController
 		{
 			foreach($_POST['params'] as $group => $postParams)
 			{
-				foreach($postParams as $id => $value)
+				foreach($postParams as $identifier => $value)
 				{
-					$identifier = $params[$group][$id]['identifier'];
 					$param = new \ATPCore\Model\Parameter();
 					$param->loadByIdentifier($identifier);
 					$param->identifier = $identifier;

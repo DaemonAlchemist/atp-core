@@ -17,9 +17,9 @@
 					<div class="admin-edit model-edit-form">
 						<?php foreach($paramList as $id => $param) { ?>
 							<?php $helper = "form{$param['type']}"?>
-							<?php $value = isset($objects[$param['identifier']]) ? $objects[$param['identifier']]->value : $param['default']?>
+							<?php $value = isset($objects[$id]) ? $objects[$id]->value : $param['default']?>
 							<?=$this->$helper(array_merge(
-								array('label' => $param['identifier'], 'name' => "params[{$group}][{$id}]", 'value' => $value),
+								array('label' => $param['displayName'], 'name' => "params[{$group}][{$id}]", 'value' => $value),
 								isset($param['options']) ? $param['options'] : array()
 							))?>
 						<?php } ?>

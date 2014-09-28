@@ -34,37 +34,37 @@ return array(
 		),
 		'parameters' => array(
 			'core-admin-title' => array(
-				'identifier' => 'Admin Title',
+				'displayName' => 'Admin Title',
 				'group' => 'Core',
 				'type' => 'Text',
 				'default' => '&lt;Admin Title Goes Here&gt;',
 			),
 			'core-site-title' => array(
-				'identifier' => 'Site Title',
+				'displayName' => 'Site Title',
 				'group' => 'Core',
 				'type' => 'Text',
 				'default' => '&lt;Site Title Goes Here&gt;',
 			),
 			'core-site-title-sep' => array(
-				'identifier' => 'Site Title Separator',
+				'displayName' => 'Site Title Separator',
 				'group' => 'Core',
 				'type' => 'Text',
 				'default' => ' - ',
 			),
-			'core-site-title' => array(
-				'identifier' => 'Copyright Text',
+			'core-site-copyright' => array(
+				'displayName' => 'Copyright Text',
 				'group' => 'Layout',
 				'type' => 'Text',
 				'default' => 'Copyright ##DATE##',
 			),
 			'core-ga-key' => array(
-				'identifier' => 'Google Analytics Key',
+				'displayName' => 'Google Analytics Key',
 				'group' => 'Analytics',
 				'type' => 'Text',
 				'default' => '',
 			),
 			'core-ga-domain' => array(
-				'identifier' => 'Google Analytics Domain',
+				'displayName' => 'Google Analytics Domain',
 				'group' => 'Analytics',
 				'type' => 'Text',
 				'default' => '',
