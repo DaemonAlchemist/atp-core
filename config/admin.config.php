@@ -51,6 +51,15 @@ return array(
 				'type' => 'Text',
 				'default' => ' - ',
 			),
+			'core-site-banner' => array(
+				'displayName' => 'Site Banner',
+				'group' => 'Layout',
+				'type' => 'ModelSelect',
+				'default' => '',
+				'options' => array(
+					'className' => 'ATPCms\Model\Image',
+				),
+			),
 			'core-site-copyright' => array(
 				'displayName' => 'Copyright Text',
 				'group' => 'Layout',
