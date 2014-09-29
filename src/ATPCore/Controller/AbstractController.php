@@ -6,6 +6,8 @@ class AbstractController extends \Zend\Mvc\Controller\AbstractActionController
 {
 	protected $_isInstallerController = false;
 	protected $_isUpdaterController = false;
+	
+	protected $remember = null;
 
 	public function onDispatch(\Zend\Mvc\MvcEvent $event)
 	{
@@ -16,6 +18,10 @@ class AbstractController extends \Zend\Mvc\Controller\AbstractActionController
 		$this->_checkForRedirects($event);
 		$this->_initLayout();
 
+		//Setup the session
+		$namespace = $this->siteParam('core-session-namespace');
+		$this->remember = new \Zend\Session\Container();
+		
 		//Proceed with page loading
 		parent::onDispatch($event);
 	}

@@ -69,6 +69,12 @@ return array(
 				'type' => 'Text',
 				'default' => '',
 			),
+			'core-session-namespace' => array(
+				'displayName' => 'Session Namespace',
+				'group' => 'Core',
+				'type' => 'Text',
+				'default' => '',
+			),
 		),
 	),
 );
