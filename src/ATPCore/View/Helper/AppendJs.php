@@ -2,12 +2,7 @@
 
 namespace ATPCore\View\Helper;
 
-class AppendJs extends \ATP\View\Helper
+class AppendJs extends \ATPCore\View\Helper\AbstractJs
 {
-	public function __invoke($fileName)
-	{
-		$this->getView()->headScript()->appendFile($this->getView()->basePath() . $fileName);
-		
-		return $this->getView();
-	}
+	protected $_func = "appendFile";
 }

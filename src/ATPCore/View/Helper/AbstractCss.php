@@ -8,6 +8,13 @@ class AbstractCss extends \ATP\View\Helper
 
 	public function __invoke($fileName)
 	{
+		$view = $this->getView();
+		
+		//Only include files once
+		if(!isset($view->existingCssFiles)) $view->existingCssFiles = array();
+		if(in_array($fileName, $view->existingCssFiles)) return;
+		$this->existingCssFiles[] = $fileName;		
+		
 		//Preprocess .less files first
 		$fileParts = explode(".", $fileName);
 		$ext = array_pop($fileParts);
@@ -27,8 +34,13 @@ class AbstractCss extends \ATP\View\Helper
 				: getcwd() . "/public" . $fileName;
 			$compiledFile = substr($originalFile, 0, -4) . "css";
 
-			//Compile file
+			//Initialize less compiler
 			$lessc = new \ATPCore\Lessc();
+			
+			//Make the definitions file available to all less files
+			$lessc->addImportDir($resolver->resolve("/css/definitions.less")->getSourceDirectory());
+			
+			//Compile the less code
 			$lessc->checkedCompile($originalFile, $compiledFile);
 			
 			//Set new filename
