@@ -3,7 +3,7 @@
 return array(
 	'modules' => array(
 		'ATPCore' => array(
-			'version' => '1.0',
+			'version' => '0.9.0',
 		),
 	),
 	'image_resize' => array(
