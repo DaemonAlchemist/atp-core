@@ -77,6 +77,9 @@ class AbstractController extends \Zend\Mvc\Controller\AbstractActionController
 	
 	private function _checkForRedirects($event)
 	{
+		$request = $event->getRequest();
+		if($request instanceof \Zend\Console\Request) return;
+	
 		if(!$this->_isInstallerController && !$this->_isUpdaterController)
 		{
 			if($this->config('redirects.useRedirects'))
