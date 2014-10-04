@@ -1,3 +1,6 @@
+<?php $this->appendCss("/atp-core/css/admin.less")?>
+<?php $this->appendJs("/atp-core/js/admin.js")?>
+
 <form method="post" enctype="multipart/form-data">
 	<h2>
 		Admin &gt;
@@ -12,17 +15,24 @@
 				<li><a href="#<?=$group?>-tab"><?=$group?></a></li>
 			<?php } ?>
 		</ul>
-			<?php foreach($params as $group => $paramList) { ?>
+			<?php foreach($params as $group => $subGroups) { ?>
 				<div id="<?=$group?>-tab">
 					<div class="admin-edit model-edit-form">
-						<?php foreach($paramList as $id => $param) { ?>
-							<?php $helper = "form{$param['type']}"?>
-							<?php $value = isset($objects[$id]) ? $objects[$id]->value : $param['default']?>
-							<?=$this->$helper(array_merge(
-								array('label' => $param['displayName'], 'name' => "params[{$group}][{$id}]", 'value' => $value),
-								isset($param['options']) ? $param['options'] : array()
-							))?>
-						<?php } ?>
+						<div class="accordion">
+							<?php foreach($subGroups as $subGroup => $paramList) { ?>
+								<h3><?=$subGroup?></h3>
+								<div>
+									<?php foreach($paramList as $id => $param) { ?>
+										<?php $helper = "form{$param['type']}"?>
+										<?php $value = isset($objects[$id]) ? $objects[$id]->value : $param['default']?>
+										<?=$this->$helper(array_merge(
+											array('label' => $param['displayName'], 'name' => "params[{$group}][{$id}]", 'value' => $value),
+											isset($param['options']) ? $param['options'] : array()
+										))?>
+									<?php } ?>
+								</div>
+							<?php } ?>
+						</div>
 					</div>
 				</div>
 			<?php } ?>

@@ -13,8 +13,18 @@ class AdminController extends \ATPAdmin\Controller\IndexController
 		$params = array();
 		foreach($paramsRaw as $id => $param)
 		{
-			if(!isset($params[$param['group']])) $params[$param['group']] = array();
-			$params[$param['group']][$id] = $param;
+			$group = $param['group'];
+			$subGroup = isset($param['subGroup']) ? $param['subGroup'] : 'General';
+			if(!isset($params[$group])) $params[$group] = array();
+			if(!isset($params[$group][$subGroup])) $params[$group][$subGroup] = array();
+			$params[$group][$subGroup][$id] = $param;
+		}
+		
+		//Sort groups
+		ksort($params, SORT_STRING);
+		foreach($params as &$group)
+		{
+			ksort($group, SORT_STRING);
 		}
 		
 		if(count($_POST))
