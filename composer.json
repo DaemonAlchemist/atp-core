@@ -32,6 +32,7 @@
 		"zendframework/zend-mvc": "2.3.*",
 		"zendframework/zend-serializer": "2.3.*",
 		"zendframework/zend-uri": "2.3.*",
+		"zendframework/zend-version": "2.3.*",
 		"zendframework/zend-view": "2.3.*"
     }
 }
