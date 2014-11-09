@@ -1,0 +1,35 @@
+<?php if($pageCount > 1) { ?>
+	<ul class="paginator">
+		<li class="per-page">
+			<select>
+				<?php foreach($perPageOptions as $option) { ?>
+					<option data-url="page=<?=min($currentPage, ceil($objectCount / $option))?>&per-page=<?=$option?>" <?=($option==$perPage) ? "selected" : ""?>><?=$option?></option>
+				<?php } ?>
+			</select>
+			<span><?=($currentPage - 1) * $perPage + 1?> - <?=min($currentPage * $perPage, $objectCount)?> (of <?=$objectCount?>)</span>
+		</li>
+		<li>
+			<?php if($currentPage > 1) { ?>
+				<a href="?page=1&perPage=<?=$perPage?>">&lt;&lt;</a>
+			<?php } ?>
+		</li>
+		<li>
+			<?php if($currentPage > 1) { ?>
+				<a href="?page=<?=$currentPage-1?>&perPage=<?=$perPage?>">&lt;</a>
+			<?php } ?>
+		</li>
+		<?php for($page=1; $page<=$pageCount; $page++) { ?>
+			<li <?=($page == $currentPage) ? "class=\"current-page\"" : ""?>><a href="?page=<?=$page?>&per-page=<?=$perPage?>"><?=$page?></a></li>
+		<?php } ?>
+		<li>
+			<?php if($currentPage < $pageCount) { ?>
+				<a href="?page=<?=$currentPage+1?>&perPage=<?=$perPage?>">&gt;</a>
+			<?php } ?>
+		</li>
+		<li>
+			<?php if($currentPage < $pageCount) { ?>
+				<a href="?page=<?=$pageCount?>&perPage=<?=$perPage?>">&gt;&gt;</a>
+			<?php } ?>
+		</li>
+	</ul>
+<?php } ?>
