@@ -18,8 +18,14 @@
 				<a href="?page=<?=$currentPage-1?>&perPage=<?=$perPage?>">&lt;</a>
 			<?php } ?>
 		</li>
-		<?php for($page=1; $page<=$pageCount; $page++) { ?>
-			<li <?=($page == $currentPage) ? "class=\"current-page\"" : ""?>><a href="?page=<?=$page?>&per-page=<?=$perPage?>"><?=$page?></a></li>
+		<?php foreach($widget->getPages() as $page) { ?>
+			<li <?=($page == $currentPage) ? "class=\"current-page\"" : ""?>>
+				<?php if($page == "...") { ?>
+					...
+				<?php } else { ?>
+					<a href="?page=<?=$page?>&per-page=<?=$perPage?>"><?=$page?></a>
+				<?php } ?>
+			</li>
 		<?php } ?>
 		<li>
 			<?php if($currentPage < $pageCount) { ?>
