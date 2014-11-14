@@ -13,6 +13,8 @@ class Widget extends \Zend\View\Model\ViewModel
 		$this->setTemplate($this->_template);
 		
 		$this->init();
+		
+		$this->widget = $this;
 	}
 	
 	protected function init()
