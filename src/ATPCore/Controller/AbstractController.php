@@ -51,6 +51,15 @@ class AbstractController extends \Zend\Mvc\Controller\AbstractActionController
 	{
 		$param = new \ATPCore\Model\Parameter();
 		$param->loadByIdentifier($name);
+		
+		//Param does not exist, set default
+		if(!$param->id)
+		{
+			$param->identifier = $name;
+			$param->value = $this->config("admin.parameters.{$name}.default");
+			$param->save();
+		}
+		
 		return $param->value;
 	}
 	
