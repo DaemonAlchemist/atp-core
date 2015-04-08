@@ -71,25 +71,33 @@ class Module extends \ATP\Module
 		//Setup a temp adapter for the ActiveRecord classes to use while installing
 		$config = $this->getServiceManager()->get('Config');
 		$dbConfig = $config['db'];
+		unset($dbConfig['database']);
 		$dbConfig['host'] = $options['db_host'];
-		$dbConfig['database'] = $options['db_schema'];
 		$dbConfig['username'] = $options['db_user'];
 		$dbConfig['password'] = $options['db_pass'];
 		$adapter = new \Zend\Db\Adapter\Adapter($dbConfig);
 		\ATP\ActiveRecord::setAdapter($adapter);
 		
 		//Create the database schema
-		$adapter->query("CREATE DATABASE `skylands`", \Zend\Db\Adapter\Adapter::QUERY_MODE_EXECUTE);
+		$adapter->query("CREATE DATABASE {$options['db_schema']}", \Zend\Db\Adapter\Adapter::QUERY_MODE_EXECUTE);
 		
+		//Add database to adapter
+		$dbConfig['database'] = $options['db_schema'];
+		$adapter = new \Zend\Db\Adapter\Adapter($dbConfig);
+		\ATP\ActiveRecord::setAdapter($adapter);
+
 		//Install database tables
 		$this->installDatabaseEntries();
+		
+		//Reinitialize modules so its config is reloaded
+		\ATPCore\Model\Module::init();
 	}
 	
 	protected function getInstallDbQueries()
 	{
 		return array(
 			"CREATE TABLE `atpcore_modules` (
-				`id` int(11) NOT NULL,
+				`id` int(11) NOT NULL AUTO_INCREMENT,
 				`name` char(32) COLLATE utf8_unicode_ci DEFAULT NULL,
 				`version` char(32) COLLATE utf8_unicode_ci DEFAULT NULL,
 				`is_active` tinyint(1) DEFAULT NULL,
