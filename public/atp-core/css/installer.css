@@ -1,6 +1,8 @@
 div.installer-page {
  width: 512px;
  margin: auto;
+ background: #dddddd;
+ padding: 8px;
 }
 div.installer-page h1 {
  text-align: center;
@@ -26,6 +28,12 @@ div.installer-page input {
 div.installer-page hr {
  clear: both;
 }
-div.installer-page input#submit {
- float: right;
+div.installer-page div.submit-box {
+ height: 48px;
+ text-align: center;
+}
+div.installer-page div.submit-box input {
+ width: 100%;
+ font-size: x-large;
+ margin: auto;
 }
