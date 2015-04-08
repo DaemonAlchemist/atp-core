@@ -53,7 +53,7 @@ class InstallerController extends AbstractController
 			$moduleEntry->save();
 		}
 		
-		$this->redirect()->toRoute('home');
+		return $this->redirect()->toRoute('home');
 	}
 	
 	public function updateAction()
