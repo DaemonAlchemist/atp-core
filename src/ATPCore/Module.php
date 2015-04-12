@@ -64,9 +64,9 @@ class Module extends \ATP\Module
 	public function install($options = array())
 	{
 		//Setup database parameters
-		$configFile = new \ATP\Config\File("config/autoload/global.php");
+		$configFile = new \ATP\Config\File("config/autoload/global.php.blank");
 		$configFile->apply($options);
-		$configFile->save();
+		$configFile->save("config/autoload/global.php");
 		
 		//Setup a temp adapter for the ActiveRecord classes to use while installing
 		$config = $this->getServiceManager()->get('Config');
