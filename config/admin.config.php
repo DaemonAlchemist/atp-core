@@ -37,13 +37,13 @@ return array(
 				'displayName' => 'Admin Title',
 				'group' => 'Core',
 				'type' => 'Text',
-				'default' => '&lt;Admin Title Goes Here&gt;',
+				'default' => 'ATP Admin',
 			),
 			'core-site-title' => array(
 				'displayName' => 'Site Title',
 				'group' => 'Core',
 				'type' => 'Text',
-				'default' => '&lt;Site Title Goes Here&gt;',
+				'default' => 'ATP Framework',
 			),
 			'core-site-title-sep' => array(
 				'displayName' => 'Site Title Separator',
