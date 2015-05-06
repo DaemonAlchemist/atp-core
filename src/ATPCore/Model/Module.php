@@ -4,6 +4,11 @@ namespace ATPCore\Model;
 
 class Module extends \ATP\ActiveRecord
 {
+	public function displayName()
+	{
+		return $this->name;
+	}
+
 	public function getActiveModules()
 	{
 		return $this->loadMultiple("is_active = 1");
