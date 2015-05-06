@@ -12,7 +12,6 @@ class SiteParameter extends \ATP\View\Helper
 			{
 				$param->identifier = $name;
 				$param->value = "{{$name} goes here}";
-				$param->save();
 			}
 			return $param->value;
 		} catch(\Exception $e) {
