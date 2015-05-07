@@ -64,7 +64,7 @@ return array(
 				'displayName' => 'Copyright Text',
 				'group' => 'Layout',
 				'type' => 'Text',
-				'default' => 'Copyright ##DATE##',
+				'default' => 'Copyright #DATE#',
 			),
 			'core-ga-key' => array(
 				'displayName' => 'Google Analytics Key',
