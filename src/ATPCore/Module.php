@@ -63,13 +63,14 @@ class Module extends \ATP\Module
 	
 	public function install($options = array())
 	{
+		$config = $this->getServiceManager()->get('Config');
+	
 		//Setup database parameters
 		$configFile = new \ATP\Config\File("config/autoload/global.php.blank");
 		$configFile->apply($options);
 		$configFile->save("config/autoload/global.php");
 		
 		//Setup a temp adapter for the ActiveRecord classes to use while installing
-		$config = $this->getServiceManager()->get('Config');
 		$dbConfig = $config['db'];
 		unset($dbConfig['database']);
 		$dbConfig['host'] = $options['db_host'];
@@ -91,6 +92,16 @@ class Module extends \ATP\Module
 		
 		//Reinitialize modules so its config is reloaded
 		\ATPCore\Model\Module::init();
+		
+		//Set default parameters
+		\ATPCore\Model\Parameter::init();
+		foreach($config['admin']['parameters'] as $id => $paramData)
+		{
+			$param = new \ATPCore\Model\Parameter();
+			$param->identifier = $id;
+			$param->value = $paramData['default'];
+			$param->save();
+		}
 	}
 	
 	protected function getInstallDbQueries()
