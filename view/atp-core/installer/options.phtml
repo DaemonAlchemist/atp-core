@@ -6,7 +6,7 @@
 
 	<form method="post" action="<?=$this->url('install', array('action' => 'install'))?>">
 		<?php foreach($options as $moduleName => $moduleOptions) { ?>
-			<h2><?=$moduleName?></h2>
+			<h2><?=$moduleName?> Options</h2>
 			<?php foreach($moduleOptions as $optionName => $optionData) { ?>
 				<?php $helper = "form{$optionData['type']}" ?>
 				<?=$this->$helper(array('label' => $optionData['label'], 'name' => "{$moduleName}[{$optionName}]", 'value' => $optionData['default']))?>
