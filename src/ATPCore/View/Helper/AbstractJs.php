@@ -8,16 +8,14 @@ class AbstractJs extends \ATP\View\Helper
 
 	public function __invoke($fileName)
 	{
-		$view = $this->getView();
-		
 		//Only include files once
-		if(!isset($view->existingJsFiles)) $view->existingJsFiles = array();
-		if(in_array($fileName, $view->existingJsFiles)) return;
-		$this->existingJsFiles[] = $fileName;
+		static $existingJsFiles = array();
+		if(in_array($fileName, $existingJsFiles)) return;
+		$existingJsFiles[] = $fileName;
 		
 		$func = $this->_func;
-		$view->headScript()->$func($this->getView()->basePath() . $fileName);
+		$this->getView()->headScript()->$func($this->getView()->basePath() . $fileName);
 		
-		return $view;
+		return $this->getView();
 	}
 }

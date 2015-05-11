@@ -8,12 +8,10 @@ class AbstractCss extends \ATP\View\Helper
 
 	public function __invoke($fileName)
 	{
-		$view = $this->getView();
-		
 		//Only include files once
-		if(!isset($view->existingCssFiles)) $view->existingCssFiles = array();
-		if(in_array($fileName, $view->existingCssFiles)) return;
-		$this->existingCssFiles[] = $fileName;		
+		static $existingCssFiles = array();
+		if(in_array($fileName, $existingCssFiles)) return;
+		$existingCssFiles[] = $fileName;		
 		
 		//Preprocess .less files first
 		$fileParts = explode(".", $fileName);
