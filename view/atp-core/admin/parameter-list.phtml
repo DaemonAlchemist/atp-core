@@ -25,10 +25,10 @@
 									<?php foreach($paramList as $id => $param) { ?>
 										<?php $helper = "form{$param['type']}"?>
 										<?php $value = isset($objects[$id]) ? $objects[$id]->value : $param['default']?>
-										<?=$this->$helper(array_merge(
+										<?=$this->$helper(
 											array('label' => $param['displayName'], 'name' => "params[{$group}][{$id}]", 'value' => $value),
 											isset($param['options']) ? $param['options'] : array()
-										))?>
+										)?>
 									<?php } ?>
 								</div>
 							<?php } ?>

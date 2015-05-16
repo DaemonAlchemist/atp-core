@@ -4,13 +4,12 @@ namespace ATPCore\View\Helper\Form;
 
 class ModelSelect extends \ATP\View\Helper
 {
-	public function __invoke($params)
+	public function __invoke($params, $options)
 	{
 		$label = $params['label'];
 		unset($params['label']);
 	
-		$className = $params['className'];
-		unset($params['className']);
+		$className = $options['className'];
 	
 		$attributes = \ATP\MapReduce::process(
 			$params,
