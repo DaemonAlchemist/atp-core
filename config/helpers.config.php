@@ -17,6 +17,7 @@ return array(
 			
 			'formBoolean' => 'ATPCore\View\Helper\Form\Boolean',
 			'formDate' => 'ATPCore\View\Helper\Form\Date',
+			'formEnum' => 'ATPCore\View\Helper\Form\Enum',
 			'formFile' => 'ATPCore\View\Helper\Form\File',
 			'formHidden' => 'ATPCore\View\Helper\Form\Hidden',
 			'formModelSelect' => 'ATPCore\View\Helper\Form\ModelSelect',
