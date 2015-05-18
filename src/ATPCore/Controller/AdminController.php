@@ -10,6 +10,15 @@ class AdminController extends \ATPAdmin\Controller\IndexController
 		
 		//Load the parameters
 		$paramsRaw = $this->config('admin.parameters');
+
+		//Get theme information
+		$themeDir = dir("themes");
+		while(false != ($entry = $themeDir->read()))
+		{
+			if(in_array($entry, array(".", ".."))) continue;
+			$paramsRaw['core-theme']['options'][] = $entry;
+		}
+
 		$params = array();
 		foreach($paramsRaw as $id => $param)
 		{
@@ -41,6 +50,7 @@ class AdminController extends \ATPAdmin\Controller\IndexController
 				}
 			}
 			$this->flash->addSuccessMessage("Module Parameters saved.");
+			$this->redirect()->toUrl($this->getRequest()->getUri());
 		}
 		
 		//Load the objects

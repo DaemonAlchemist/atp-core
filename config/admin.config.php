@@ -51,6 +51,14 @@ return array(
 				'type' => 'Text',
 				'default' => ' - ',
 			),
+			'core-theme' => array(
+				'displayName' => 'Theme',
+				'group' => 'Layout',
+				'type' => 'Enum',
+				'default' => 'Default',
+				'options' => array(
+				),
+			),
 			'core-site-banner' => array(
 				'displayName' => 'Site Banner',
 				'group' => 'Layout',

@@ -17,6 +17,23 @@ class Module extends \ATP\Module
 		$adapter = $sm->get('ATPCore\Db');
         \ATP\ActiveRecord::setAdapter($adapter);
 		
+		$param = new \ATPCore\Model\Parameter();
+		$param->loadByIdentifier('core-theme');
+		$themeDir = $param->value;
+		
+		//Add theme directory to asset manager paths
+		$config['asset_manager']['resolver_configs']['prioritized_paths'][] = array(
+			"path"		=> realpath("themes/{$themeDir}/public"),
+			"priority"	=> 50
+		);
+		$priPathResolver = $sm->get('AssetManager\Resolver\PrioritizedPathsResolver');
+		$priPathResolver->setPaths($config['asset_manager']['resolver_configs']['prioritized_paths']);
+		
+		//Add theme directory to template path stack
+		array_unshift($config['view_manager']['template_path_stack'], realpath("themes/{$themeDir}/view"));
+		$pathStackResolver = $sm->get('ViewTemplatePathStack');		
+		$pathStackResolver->setPaths($config['view_manager']['template_path_stack']);
+
 		//Add filter hook to view renderer
 		$vm = $sm->get('ViewManager');
 		$renderer = $vm->getRenderer();
@@ -34,6 +51,13 @@ class Module extends \ATP\Module
 		}
 		$renderer->setFilterChain($filterChain);
     }
+	
+	public function getConfig()
+	{
+		$config = parent::getConfig();
+		
+		return $config;
+	}
 	
 	public function getInstallerOptions()
 	{

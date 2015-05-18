@@ -18,7 +18,7 @@ class Breadcrumbs extends \ATP\View\Helper
 	
 	public function __toString()
 	{
-		$html = "<ul>";
+		$html = "<ul class=\"bread-crumbs\">";
 		
 		foreach(array_reverse($this->_links) as $link)
 		{
