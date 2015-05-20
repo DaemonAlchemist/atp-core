@@ -14,7 +14,8 @@ class AbstractController extends \Zend\Mvc\Controller\AbstractActionController
 		//Set the default time zone
 		date_default_timezone_set($this->config('timeZone'));
 
-		$this->_checkForUpdates();
+		$result = $this->_checkForUpdates();
+		if(!is_null($result)) return $result;
 		$this->_checkForRedirects($event);
 		$this->_initLayout();
 
@@ -75,12 +76,14 @@ class AbstractController extends \Zend\Mvc\Controller\AbstractActionController
 				
 				if($moduleData['version'] != $module->version)
 				{
-					if(!$this->_isUpdaterController) $this->redirect()->toRoute('install', array('action' => 'update'));
+					if(!$this->_isUpdaterController) return $this->redirect()->toRoute('install', array('action' => 'update'));
 				}
 			} catch(\Exception $e) {
-				if(!$this->_isInstallerController) $this->redirect()->toRoute('install', array('action' => 'options'));
+				if(!$this->_isInstallerController) return $this->redirect()->toRoute('install', array('action' => 'options'));
 			}
 		}
+		
+		return null;
 	}
 	
 	private function _checkForRedirects($event)

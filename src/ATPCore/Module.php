@@ -17,9 +17,13 @@ class Module extends \ATP\Module
 		$adapter = $sm->get('ATPCore\Db');
         \ATP\ActiveRecord::setAdapter($adapter);
 		
-		$param = new \ATPCore\Model\Parameter();
-		$param->loadByIdentifier('core-theme');
-		$themeDir = $param->value;
+		$themeDir = "Default";
+		try{
+			$param = new \ATPCore\Model\Parameter();
+			$param->loadByIdentifier('core-theme');
+			$themeDir = $param->value;
+		} catch(\Exception $e) {
+		}
 		
 		//Add theme directory to asset manager paths
 		$config['asset_manager']['resolver_configs']['prioritized_paths'][] = array(
@@ -160,6 +164,37 @@ class Module extends \ATP\Module
 				KEY `source_index` (`source_pattern`),
 				KEY `priority_index` (`priority`)
 			) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci",
+			
+			"CREATE TABLE `atpcore_menus` (
+				`id` int(11) NOT NULL AUTO_INCREMENT,
+				`identifier` char(32) DEFAULT NULL,
+				`name` char(32) DEFAULT NULL,
+				PRIMARY KEY (`id`),
+				UNIQUE KEY `identifier_UNIQUE` (`identifier`)
+			) ENGINE=InnoDB DEFAULT CHARSET=latin1",
+			
+			"INSERT INTO atpcore_menus (identifier, name) values ('main-menu', 'Main Menu')",
+			
+			"CREATE TABLE `atpcore_menu_items` (
+				`id` int(11) NOT NULL AUTO_INCREMENT,
+				`menu_id` int(11) DEFAULT NULL,
+				`sort_order` int(3) DEFAULT NULL,
+				`label` char(255) DEFAULT NULL,
+				`url` char(255) DEFAULT NULL,
+				`local_url` tinyint(1) DEFAULT NULL,
+				PRIMARY KEY (`id`),
+				KEY `sort_idx` (`sort_order`),
+				KEY `menu_item_fk_idx` (`menu_id`),
+				CONSTRAINT `menu_item_fk` FOREIGN KEY (`menu_id`) REFERENCES `atpcore_menus` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+			) ENGINE=InnoDB DEFAULT CHARSET=latin1",
+
+			"INSERT INTO atpcore_menu_items (menu_id, sort_order, label, url, local_url) values
+				(1, 1, 'Home', '/', 1),
+				(1, 2, 'Blog', '/cms/category/blog', 1),
+				(1, 3, 'Gallery', '/gallery', 1),
+				(1, 4, 'About', '/about', 1),
+				(1, 5, 'Contact', '/contact', 1)
+			",
 		);
 	}
 }

@@ -4,6 +4,7 @@ return array(
 	'block_filters' => array(
 		'param' => 'ATPCore\View\Filter\Param',
 		'url' => 'ATPCore\View\Filter\Url',
+		'menu' => 'ATPCore\View\Filter\Menu',
 	),
 	'view_helpers' => array(
 		'invokables' => array(

@@ -13,6 +13,20 @@ return array(
 					'list' => array('controller' => 'atpcore-admin', 'action' => 'parameter-list'),
 				),
 			),
+			'atpcore_menu' => array(
+				'displayName' => 'Menu',
+				'class' => 'ATPCore\Model\Menu',
+				'category' => 'Layout',
+				'displayColumns' => array('Identifier'),
+				'defaultOrder' => 'name ASC',
+			),
+			'atpcore_menu_item' => array(
+				'displayName' => 'Menu Item',
+				'class' => 'ATPCore\Model\MenuItem',
+				'category' => 'Layout',
+				'displayColumns' => array('Url', 'Menu', 'SortOrder'),
+				'defaultOrder' => 'menu_id, sort_order ASC',
+			),
 			'atpcore_redirect' => array(
 				'displayName' => 'Redirect',
 				'class' => 'ATPCore\Model\Redirect',
