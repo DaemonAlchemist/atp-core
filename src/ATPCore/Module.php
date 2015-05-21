@@ -147,7 +147,7 @@ class Module extends \ATP\Module
 			"CREATE TABLE `atpcore_parameters` (
 				`id` int(11) NOT NULL AUTO_INCREMENT,
 				`identifier` char(32) COLLATE utf8_unicode_ci DEFAULT NULL,
-				`value` char(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+				`value` longtext COLLATE utf8_unicode_ci DEFAULT NULL,
 				PRIMARY KEY (`id`),
 				UNIQUE KEY `identifier_UNIQUE` (`identifier`)
 			) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci",
