@@ -31,6 +31,9 @@ return array(
 			'prependJs' => 'ATPCore\View\Helper\PrependJs',
 			'appendCss' => 'ATPCore\View\Helper\AppendCss',
 			'prependCss' => 'ATPCore\View\Helper\PrependCss',
+			
+			'metaKeywords' => 'ATPCore\View\Helper\MetaKeywords',
+			'metaDescription' => 'ATPCore\View\Helper\MetaDescription',
 		)
 	)
 );
