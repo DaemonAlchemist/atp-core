@@ -37,7 +37,7 @@ class ImageResizeController extends AbstractController
 		);
 		$cachedImagePath = getcwd() . "/public/{$path}";
 		
-		if(file_exists($cachedImagePath) && false)
+		if(file_exists($cachedImagePath))
 		{
 			$content = file_get_contents($cachedImagePath);
 		}
