@@ -37,7 +37,7 @@ class ImageResizeController extends AbstractController
 		);
 		$cachedImagePath = getcwd() . "/public/{$path}";
 		
-		if(file_exists($cachedImagePath))
+		if(file_exists($cachedImagePath) && false)
 		{
 			$content = file_get_contents($cachedImagePath);
 		}
@@ -60,6 +60,11 @@ class ImageResizeController extends AbstractController
 					$width = $scale * $size->getWidth();
 					$height = $scale * $size->getHeight();
 					break;
+				case "crop":
+					$scale = max($width / $size->getWidth(), $height / $size->getHeight());
+					$width = $scale * $size->getWidth();
+					$height = $scale * $size->getHeight();
+					break;
 				case "exact":
 					//Nothing to do, keep original sizes
 					break;
@@ -69,6 +74,16 @@ class ImageResizeController extends AbstractController
 			$transformation = new \Imagine\Filter\Transformation();
 			$transformation->resize(new \Imagine\Image\Box($width, $height));
 			$image = $transformation->apply($image);
+			
+			//Crop the image if needed
+			if($mode == "crop")
+			{
+				$transformation = new \Imagine\Filter\Basic\Crop(
+					new \Imagine\Image\Point(0, 0),
+					new \Imagine\Image\Box($this->params('width'), $this->params('height'))
+				);
+				$image = $transformation->apply($image);
+			}
 			
 			//Get the image content
 			$content = $image->get('png');
