@@ -17,13 +17,14 @@ class Module extends \ATP\Module
 		$adapter = $sm->get('ATPCore\Db');
         \ATP\ActiveRecord::setAdapter($adapter);
 		
-		$themeDir = "Default";
+		$themeDir = null;
 		try{
 			$param = new \ATPCore\Model\Parameter();
 			$param->loadByIdentifier('core-theme');
 			$themeDir = $param->value;
 		} catch(\Exception $e) {
 		}
+		if(empty($themeDir)) $themeDir = "Default";
 		
 		//Add theme directory to asset manager paths
 		$config['asset_manager']['resolver_configs']['prioritized_paths'][] = array(
