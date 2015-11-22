@@ -29,13 +29,13 @@ class Module extends \ATP\Module
 		//Add theme directory to asset manager paths
 		$config['asset_manager']['resolver_configs']['prioritized_paths'][] = array(
 			"path"		=> realpath("themes/{$themeDir}/public"),
-			"priority"	=> 500
+			"priority"	=> 5000
 		);
 		$priPathResolver = $sm->get('AssetManager\Resolver\PrioritizedPathsResolver');
 		$priPathResolver->setPaths($config['asset_manager']['resolver_configs']['prioritized_paths']);
 		//echo "<pre>";print_r($config['asset_manager']['resolver_configs']['prioritized_paths']);die();
 		//Add theme directory to template path stack
-		array_unshift($config['view_manager']['template_path_stack'], realpath("themes/{$themeDir}/view"));
+		$config['view_manager']['template_path_stack'][] = realpath("themes/{$themeDir}/view");
 		$pathStackResolver = $sm->get('ViewTemplatePathStack');		
 		$pathStackResolver->setPaths($config['view_manager']['template_path_stack']);
 
