@@ -27,6 +27,17 @@ class AbstractController extends \Zend\Mvc\Controller\AbstractActionController
 		parent::onDispatch($event);
 	}
 
+    protected function noCache()
+    {
+        session_cache_limiter('private');
+        header('Cache-Control: private, no-store, no-cache, must-revalidate, post-check=0, pre-check=0');
+    }
+
+    protected function cacheFor($seconds)
+    {
+        session_cache_limiter('public');
+        header('Expires: '. gmdate('D, d M Y H:i:s \G\M\T', time() + $seconds));
+    }
 
 	protected function get($resource)
 	{
