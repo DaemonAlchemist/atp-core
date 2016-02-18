@@ -71,6 +71,7 @@ class AbstractCss extends \ATP\View\Helper
 
                 //Compile the less code
                 try {
+                    set_time_limit(60);
                     $lessc->parseFile($originalFile);
                     file_put_contents($compiledFile, $lessc->getCss());
                 } catch(\Exception $e) {

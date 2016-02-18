@@ -84,7 +84,7 @@ class AbstractController extends \Zend\Mvc\Controller\AbstractActionController
 			try {
 				$module = new \ATPCore\Model\Module();
 				$module->loadByName($name);
-				
+
 				if($moduleData['version'] != $module->version)
 				{
 					if(!$this->_isUpdaterController) return $this->redirect()->toRoute('install', array('action' => 'update'));
@@ -93,7 +93,7 @@ class AbstractController extends \Zend\Mvc\Controller\AbstractActionController
 				if(!$this->_isInstallerController) return $this->redirect()->toRoute('install', array('action' => 'options'));
 			}
 		}
-		
+
 		return null;
 	}
 	
