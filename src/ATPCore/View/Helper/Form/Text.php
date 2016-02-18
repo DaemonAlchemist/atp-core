@@ -9,7 +9,7 @@ class Text extends \ATP\View\Helper
 		$label = $params['label'];
 		unset($params['label']);
 
-		$params['value'] = str_replace(array('{','}', '&'), array('\{', '\}', '&amp;'), $params['value']);	
+		$params['value'] = str_replace(['{', '}'], ['\{', '\}'], htmlspecialchars($params['value']));
 		
 		$attributes = \ATP\MapReduce::process(
 			$params,

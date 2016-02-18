@@ -12,7 +12,7 @@ class Textarea extends \ATP\View\Helper
 		$text = isset($params['value']) ? $params['value'] : "";
 		unset($params['value']);
 	
-		$text = str_replace(array('{','}', '&'), array('\{', '\}', '&amp;'), $text);
+		$text = str_replace(['{', '}'], ['\{', '\}'], htmlspecialchars($text));
 	
 		$attributes = \ATP\MapReduce::process(
 			$params,
