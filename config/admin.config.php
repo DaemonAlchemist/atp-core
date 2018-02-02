@@ -34,7 +34,7 @@ return array(
 				'displayColumns' => array('Name', 'SourcePattern', 'DestPattern'),
 				'defaultOrder' => 'name ASC',
 				'tabs' => array(
-					'Details' => array('name', 'is_permanent'),
+					'Details' => array('name', 'is_permanent', 'priority'),
 					'Patterns' => array('source_pattern', 'dest_pattern'),
 				),
 			),
